@@ -1,0 +1,22 @@
+{
+  "name": "ljtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "codecept.conf.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "npx codeceptjs run --steps",
+    "interface": "npx codecept-ui --app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "codeceptjs": "^3.3.5"
+  },
+  "dependencies": {
+    "@codeceptjs/ui": "^0.4.0"
+  }
+}
