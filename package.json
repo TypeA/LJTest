@@ -7,8 +7,11 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "npx codeceptjs run --steps",
-    "interface": "npx codecept-ui --app"
+    "run": "npx codeceptjs run --steps",
+    "interface": "npx codecept-ui --app",
+    "test": "npx codeceptjs run --grep '@test'",
+    "debug": "npx codeceptjs run --debug",
+    "shell": "npx codeceptjs shell"
   },
   "keywords": [],
   "author": "",

@@ -3,8 +3,20 @@
 module.exports = function() {
   return actor({
 
-    // Define custom steps here, use 'this' to access default methods of I.
-    // It is recommended to place a general 'login' function here.
+    getRandomDomain: async function () {
+      this.amOnPage('https://www.livejournal.com/aab/custom_domains.txt');
+      let a = await this.grabTextFrom('pre');
+      a = a.replaceAll('\n','-------');
+      console.log(a);
+
+      return (a);
+    },
+
+    dontSeeCreateAccountButton: function () {
+      this.waitForInvisible(this.header.createNewAccountMenuItem);
+      this.dontSeeElement(this.header.createNewAccountMenuItem);
+    },
+
 
   });
 }

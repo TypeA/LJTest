@@ -4,13 +4,16 @@ exports.config = {
   output: './output',
   helpers: {
     Playwright: {
-      url: 'https://www.livejournal.com/',
+      url: 'https://www.livejournal.com',
       show: true,
       browser: 'chromium'
     }
   },
   include: {
-    I: './steps_file.js'
+    I: './steps_file.js',
+    header: './pages/header.js',
+    loginPage: "./pages/login.js",
+    mainPage: './pages/main.js'
   },
   name: 'LJTest'
 }
