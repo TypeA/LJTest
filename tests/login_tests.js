@@ -31,10 +31,10 @@ Data(accounts).Scenario('Успешная авторизация на домен
     let domainUrl = await I.getRandomDomain();
     I.amOnPage(domainUrl);
     I.click(header.loginMenuItem);
-    I.waitUrlEquals(loginPage.url);
-    loginPage.fillLoginFormAndSubmit(current.login, current.password);
-    I.waitUrlEquals(domainUrl);
+    I.seeInCurrentUrl(loginPage.url);
+    loginPage.fillLoginFormAndSubmit(current.username, current.password);
+    I.seeInCurrentUrl(domainUrl);
     let username = header.getUsernameFromHeader();
     I.verifyEqual(username,current.username.toUpperCase());
-    I.see(current.login.toUpperCase());
+    I.see(current.username.toUpperCase());
 });

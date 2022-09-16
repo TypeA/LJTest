@@ -17,7 +17,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "codeceptjs": "^3.3.5"
+    "codeceptjs": "^3.3.5",
+    "playwright": "1.25.2"
   },
   "dependencies": {
     "@codeceptjs/ui": "^0.4.0"

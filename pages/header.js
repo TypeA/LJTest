@@ -7,7 +7,7 @@ module.exports = {
 
     loginMenuItem: '.s-header-item__link--login',
     createNewAccountMenuItem: '.s-nav-item-signup a',
-    usernameMenuItem: '.s-header-item__link--user span',
+    usernameMenuItem: '.s-nav-item__name',
 
     loginForm: {
         loginFormLoginField: '.b-loginform-field .b-loginform-field__input--user',
@@ -24,7 +24,7 @@ module.exports = {
 
     async getUsernameFromHeader() {
         I.waitForElement(this.usernameMenuItem,5);
-        let username = await I.grabTextFrom(this.usernameMenuItem);
+        let username = (await I.grabTextFrom(this.usernameMenuItem)).replace('\n','').trim();
         return username.toUpperCase();
     }
 }

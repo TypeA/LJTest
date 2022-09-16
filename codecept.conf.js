@@ -6,7 +6,8 @@ exports.config = {
     Playwright: {
       url: 'https://www.livejournal.com',
       show: true,
-      browser: 'chromium'
+      browser: 'chromium',
+      waitForNavigation: "domcontentloaded"
     }
   },
   include: {

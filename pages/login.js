@@ -43,11 +43,5 @@ module.exports = {
             default:
                 break;
         }
-    },
-
-    setCheckboxRememberMe(isChecked) {
-        if(isChecked){
-            I.click(this.unlogged.rememberMeLabel);
-        }
-    },
+    }
 }
