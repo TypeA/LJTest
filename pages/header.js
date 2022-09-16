@@ -22,5 +22,9 @@ module.exports = {
         I.click(this.loginForm.loginFormLoginButton);
     },
 
-
+    async getUsernameFromHeader() {
+        I.waitForElement(this.usernameMenuItem,5);
+        let username = await I.grabTextFrom(this.usernameMenuItem);
+        return username.toUpperCase();
+    }
 }

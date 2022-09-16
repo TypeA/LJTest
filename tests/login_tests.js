@@ -1,6 +1,6 @@
 const { I, loginPage, mainPage, header, mySteps } = inject();
 
-let accounts = new DataTable(['login', 'password']);
+let accounts = new DataTable(['username', 'password']);
 accounts.add(['long_name', '123Qqq']);
 accounts.add(['rrrcen', '123Qqq']);
 accounts.add(['_starts','QAl0vesQA']);
@@ -11,16 +11,20 @@ Before(({I}) => {
     I.clearCookie();
 });
 
-Data(accounts).Scenario('Успешная авторизация на странице /login.bml',({ I,loginPage,current}) => {
+Data(accounts).Scenario('Успешная авторизация на странице /login.bml',({ I,loginPage,current,header}) => {
     I.amOnPage(loginPage.url);
-    loginPage.fillLoginFormAndSubmit(current.login, current.password);
-    I.see(current.login.toUpperCase());
+    loginPage.fillLoginFormAndSubmit(current.username, current.password);
+    let username = header.getUsernameFromHeader();
+    I.verifyEqual(username,current.username.toUpperCase());
+    I.see(current.username.toUpperCase());
 });
 
 Data(accounts).Scenario('Успешная авторизация на главной странице',({I,mainPage,header,current}) => {
     I.amOnPage(mainPage.url);
-    header.openLoginFormAndSubmit(current.login, current.password);
-    I.see(current.login.toUpperCase());
+    header.openLoginFormAndSubmit(current.username, current.password);
+    let username = header.getUsernameFromHeader();
+    I.verifyEqual(username,current.username.toUpperCase());
+    I.see(current.username.toUpperCase());
 });
 
 Data(accounts).Scenario('Успешная авторизация на домене @domain',async ({I, header, loginPage, current}) => {
@@ -30,5 +34,7 @@ Data(accounts).Scenario('Успешная авторизация на домен
     I.waitUrlEquals(loginPage.url);
     loginPage.fillLoginFormAndSubmit(current.login, current.password);
     I.waitUrlEquals(domainUrl);
+    let username = header.getUsernameFromHeader();
+    I.verifyEqual(username,current.username.toUpperCase());
     I.see(current.login.toUpperCase());
 });

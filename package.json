@@ -8,7 +8,7 @@
   },
   "scripts": {
     "run": "npx codeceptjs run --steps",
-    "interface": "npx codecept-ui --app",
+    "interface": "npx codecept-ui --app --plugins allure",
     "test": "npx codeceptjs run --grep '@test'",
     "debug": "npx codeceptjs run --debug",
     "shell": "npx codeceptjs shell"
