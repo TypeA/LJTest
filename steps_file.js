@@ -5,11 +5,11 @@ module.exports = function() {
 
     getRandomDomain: async function () {
       this.amOnPage('https://www.livejournal.com/aab/custom_domains.txt');
-      let a = await this.grabTextFrom('pre');
-      a = a.replaceAll('\n','-------');
-      console.log(a);
-
-      return (a);
+      let domains = await this.grabTextFrom('pre');
+      domains = domains.split('\n');
+      const rnd = Math.floor(Math.random() * (domains.length-1));
+      let selected = 'https://' + domains[rnd] + "/";
+      return (selected);
     },
 
     dontSeeCreateAccountButton: function () {

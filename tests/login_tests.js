@@ -5,10 +5,6 @@ accounts.add(['long_name', '123Qqq']);
 accounts.add(['rrrcen', '123Qqq']);
 accounts.add(['_starts','QAl0vesQA']);
 
-let domains = new DataTable(['url']);
-domains.add(['https://lena-miro.ru']);
-domains.add(['https://rublev.moscow']);
-
 Feature('Тесты авторизации @smoke');
 
 Before(({I}) => {
@@ -27,6 +23,12 @@ Data(accounts).Scenario('Успешная авторизация на главн
     I.see(current.login.toUpperCase());
 });
 
-Data(domains).Scenario('Успешная авторизация на домене @domain',({I,header,loginPage,current}) =>{
-
+Data(accounts).Scenario('Успешная авторизация на домене @domain',async ({I, header, loginPage, current}) => {
+    let domainUrl = await I.getRandomDomain();
+    I.amOnPage(domainUrl);
+    I.click(header.loginMenuItem);
+    I.waitUrlEquals(loginPage.url);
+    loginPage.fillLoginFormAndSubmit(current.login, current.password);
+    I.waitUrlEquals(domainUrl);
+    I.see(current.login.toUpperCase());
 });
